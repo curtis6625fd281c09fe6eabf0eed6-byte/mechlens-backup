@@ -1,0 +1,898 @@
+{
+  "recorded_at_utc": "2026-11-06T07:21:31.887244+00:00",
+  "source_commit": "8a410e9c35666bdb0ecec3dfb466442408a3a879",
+  "activation_cache_blob": "7d392b6da53f44bc975d13606769a20682088dc9",
+  "python": "3.12.14",
+  "torch": "2.10.0+cpu",
+  "class_file": "/workspace/scratch/82226a932c76/mechlens/transformer_lens/ActivationCache.py",
+  "device": "cpu",
+  "dtype": "float32",
+  "torch_threads": 1,
+  "method": "One warm-up and five measured samples per probe operation; independently allocated all-ones tensors. Construction is timed once without warm-up and excluded from formatting samples. No inference or CUDA work.",
+  "matrix": [
+    {
+      "case": "keys_1",
+      "elements_per_tensor": 1,
+      "profile": "default",
+      "construction_ms_single_sample": 0.23623699962627143,
+      "report": {
+        "python": "3.12.14",
+        "torch": "2.10.0+cpu",
+        "ipython": "9.10.0",
+        "transformer_lens": "0.0.0",
+        "probe_repository_commit": "8a410e9c35666bdb0ecec3dfb466442408a3a879",
+        "cache_class": "transformer_lens.ActivationCache.ActivationCache",
+        "cache_class_file": "/workspace/scratch/82226a932c76/mechlens/transformer_lens/ActivationCache.py",
+        "repr_source": "    def __repr__(self) -> str:\n        \"\"\"Representation of the ActivationCache.\n\n        Special method that returns a string representation of an object. It's normally used to give\n        a string that can be used to recreate the object, but here we just return a string that\n        describes the object.\n        \"\"\"\n        return f\"ActivationCache with keys {list(self.cache_dict.keys())}\"\n",
+        "keys": 1,
+        "tensor_entries": 1,
+        "logical_tensor_bytes": 4,
+        "devices": [
+          "cpu"
+        ],
+        "print_options": {
+          "precision": 4,
+          "threshold": 1000,
+          "edgeitems": 3,
+          "linewidth": 80,
+          "sci_mode": null
+        },
+        "initial_cuda_sync_ms": 0.0005410001904238015,
+        "repeats": 5,
+        "measurements": {
+          "repr_wrapper": {
+            "median_ms": 0.0008919996616896242,
+            "samples_ms": [
+              0.0020229999790899456,
+              0.0012509999578469433,
+              0.0008919996616896242,
+              0.0006510008461191319,
+              0.0005410001904238015
+            ],
+            "text_chars": 53
+          },
+          "str_wrapper": {
+            "median_ms": 0.00059100057114847,
+            "samples_ms": [
+              0.0010109997674589977,
+              0.0009710001904750243,
+              0.0005210004019318148,
+              0.0005110005076858215,
+              0.00059100057114847
+            ],
+            "text_chars": 53
+          },
+          "print_wrapper_to_memory": {
+            "median_ms": 0.0016730000425013714,
+            "samples_ms": [
+              0.003996000486949924,
+              0.0022129997887532227,
+              0.0015220002751448192,
+              0.0016730000425013714,
+              0.0013319995559868403
+            ],
+            "text_chars": 54
+          },
+          "ipython_format_wrapper": {
+            "median_ms": 0.09156899977824651,
+            "samples_ms": [
+              0.17466400004195748,
+              0.0995010004771757,
+              0.09156899977824651,
+              0.09039700034918496,
+              0.08434800020040711
+            ],
+            "text_chars": null
+          },
+          "display_wrapper_captured": {
+            "median_ms": 0.29002900009800214,
+            "samples_ms": [
+              0.29002900009800214,
+              2.4595089998911135,
+              0.18621099934534868,
+              0.1435470003343653,
+              0.32333899980585556
+            ],
+            "text_chars": null
+          }
+        },
+        "scope": "Formatting and captured publication only; no browser rendering. Logical bytes may double-count aliases. Cache construction is excluded."
+      }
+    },
+    {
+      "case": "keys_100",
+      "elements_per_tensor": 1,
+      "profile": "default",
+      "construction_ms_single_sample": 0.25100999937421875,
+      "report": {
+        "python": "3.12.14",
+        "torch": "2.10.0+cpu",
+        "ipython": "9.10.0",
+        "transformer_lens": "0.0.0",
+        "probe_repository_commit": "8a410e9c35666bdb0ecec3dfb466442408a3a879",
+        "cache_class": "transformer_lens.ActivationCache.ActivationCache",
+        "cache_class_file": "/workspace/scratch/82226a932c76/mechlens/transformer_lens/ActivationCache.py",
+        "repr_source": "    def __repr__(self) -> str:\n        \"\"\"Representation of the ActivationCache.\n\n        Special method that returns a string representation of an object. It's normally used to give\n        a string that can be used to recreate the object, but here we just return a string that\n        describes the object.\n        \"\"\"\n        return f\"ActivationCache with keys {list(self.cache_dict.keys())}\"\n",
+        "keys": 100,
+        "tensor_entries": 100,
+        "logical_tensor_bytes": 400,
+        "devices": [
+          "cpu"
+        ],
+        "print_options": {
+          "precision": 4,
+          "threshold": 1000,
+          "edgeitems": 3,
+          "linewidth": 80,
+          "sci_mode": null
+        },
+        "initial_cuda_sync_ms": 0.0012519994925241917,
+        "repeats": 5,
+        "measurements": {
+          "repr_wrapper": {
+            "median_ms": 0.008521999916411005,
+            "samples_ms": [
+              0.008521999916411005,
+              0.009063000106834807,
+              0.00817199997982243,
+              0.008633000106783584,
+              0.007992000064405147
+            ],
+            "text_chars": 2816
+          },
+          "str_wrapper": {
+            "median_ms": 0.007761999768263195,
+            "samples_ms": [
+              0.007741999979771208,
+              0.007812000148987863,
+              0.007882000318204518,
+              0.007761999768263195,
+              0.007722000191279221
+            ],
+            "text_chars": 2816
+          },
+          "print_wrapper_to_memory": {
+            "median_ms": 0.009344999853055924,
+            "samples_ms": [
+              0.01017500017042039,
+              0.009344999853055924,
+              0.009033000424096826,
+              0.008842999704938848,
+              0.009465000402997248
+            ],
+            "text_chars": 2817
+          },
+          "ipython_format_wrapper": {
+            "median_ms": 0.10240499977953732,
+            "samples_ms": [
+              0.10707099954743171,
+              0.10240499977953732,
+              0.09686700013844529,
+              0.11520399948494742,
+              0.09496400070929667
+            ],
+            "text_chars": null
+          },
+          "display_wrapper_captured": {
+            "median_ms": 0.14668199946754612,
+            "samples_ms": [
+              0.14668199946754612,
+              0.16431800031568855,
+              0.14605999967898242,
+              0.13486399984685704,
+              0.25881100009428337
+            ],
+            "text_chars": null
+          }
+        },
+        "scope": "Formatting and captured publication only; no browser rendering. Logical bytes may double-count aliases. Cache construction is excluded."
+      }
+    },
+    {
+      "case": "keys_10000",
+      "elements_per_tensor": 1,
+      "profile": "default",
+      "construction_ms_single_sample": 12.855435999881593,
+      "report": {
+        "python": "3.12.14",
+        "torch": "2.10.0+cpu",
+        "ipython": "9.10.0",
+        "transformer_lens": "0.0.0",
+        "probe_repository_commit": "8a410e9c35666bdb0ecec3dfb466442408a3a879",
+        "cache_class": "transformer_lens.ActivationCache.ActivationCache",
+        "cache_class_file": "/workspace/scratch/82226a932c76/mechlens/transformer_lens/ActivationCache.py",
+        "repr_source": "    def __repr__(self) -> str:\n        \"\"\"Representation of the ActivationCache.\n\n        Special method that returns a string representation of an object. It's normally used to give\n        a string that can be used to recreate the object, but here we just return a string that\n        describes the object.\n        \"\"\"\n        return f\"ActivationCache with keys {list(self.cache_dict.keys())}\"\n",
+        "keys": 10000,
+        "tensor_entries": 10000,
+        "logical_tensor_bytes": 40000,
+        "devices": [
+          "cpu"
+        ],
+        "print_options": {
+          "precision": 4,
+          "threshold": 1000,
+          "edgeitems": 3,
+          "linewidth": 80,
+          "sci_mode": null
+        },
+        "initial_cuda_sync_ms": 0.0016730000425013714,
+        "repeats": 5,
+        "measurements": {
+          "repr_wrapper": {
+            "median_ms": 0.7918970004539005,
+            "samples_ms": [
+              0.9212429995386628,
+              0.7918970004539005,
+              0.7869800001572003,
+              0.77454099937313,
+              0.8466700001008576
+            ],
+            "text_chars": 298916
+          },
+          "str_wrapper": {
+            "median_ms": 1.0853410003619501,
+            "samples_ms": [
+              1.144419999945967,
+              1.2051119992975146,
+              1.0853410003619501,
+              0.7594779999635648,
+              0.8019120004973956
+            ],
+            "text_chars": 298916
+          },
+          "print_wrapper_to_memory": {
+            "median_ms": 0.7133090002753306,
+            "samples_ms": [
+              0.7133090002753306,
+              0.6633940001847805,
+              0.7389669999611215,
+              0.6773240002075909,
+              0.8390989996769349
+            ],
+            "text_chars": 298917
+          },
+          "ipython_format_wrapper": {
+            "median_ms": 1.0530819999985397,
+            "samples_ms": [
+              1.0753059996204684,
+              1.0266919998684898,
+              1.0530819999985397,
+              1.0981999994328362,
+              0.9465110006203759
+            ],
+            "text_chars": null
+          },
+          "display_wrapper_captured": {
+            "median_ms": 1.4960010003051138,
+            "samples_ms": [
+              1.1091169999417616,
+              1.515802000540134,
+              1.4960010003051138,
+              1.6184469996005646,
+              1.0964569992211182
+            ],
+            "text_chars": null
+          }
+        },
+        "scope": "Formatting and captured publication only; no browser rendering. Logical bytes may double-count aliases. Cache construction is excluded."
+      }
+    },
+    {
+      "case": "tensor_256",
+      "elements_per_tensor": 256,
+      "profile": "default",
+      "construction_ms_single_sample": 1.0089350007547182,
+      "report": {
+        "python": "3.12.14",
+        "torch": "2.10.0+cpu",
+        "ipython": "9.10.0",
+        "transformer_lens": "0.0.0",
+        "probe_repository_commit": "8a410e9c35666bdb0ecec3dfb466442408a3a879",
+        "cache_class": "transformer_lens.ActivationCache.ActivationCache",
+        "cache_class_file": "/workspace/scratch/82226a932c76/mechlens/transformer_lens/ActivationCache.py",
+        "repr_source": "    def __repr__(self) -> str:\n        \"\"\"Representation of the ActivationCache.\n\n        Special method that returns a string representation of an object. It's normally used to give\n        a string that can be used to recreate the object, but here we just return a string that\n        describes the object.\n        \"\"\"\n        return f\"ActivationCache with keys {list(self.cache_dict.keys())}\"\n",
+        "keys": 4,
+        "tensor_entries": 4,
+        "logical_tensor_bytes": 4096,
+        "devices": [
+          "cpu"
+        ],
+        "print_options": {
+          "precision": 4,
+          "threshold": 1000,
+          "edgeitems": 3,
+          "linewidth": 80,
+          "sci_mode": null
+        },
+        "initial_cuda_sync_ms": 0.0017129996194853447,
+        "repeats": 5,
+        "measurements": {
+          "repr_wrapper": {
+            "median_ms": 0.0007509997885790654,
+            "samples_ms": [
+              0.0014920005924068391,
+              0.0013919998309575021,
+              0.0007310000000870787,
+              0.0007109993021003902,
+              0.0007509997885790654
+            ],
+            "text_chars": 134
+          },
+          "str_wrapper": {
+            "median_ms": 0.000740999894333072,
+            "samples_ms": [
+              0.0008209999577957205,
+              0.0008009992598090321,
+              0.000711000211595092,
+              0.000740999894333072,
+              0.0007210001058410853
+            ],
+            "text_chars": 134
+          },
+          "print_wrapper_to_memory": {
+            "median_ms": 0.0017729998944560066,
+            "samples_ms": [
+              0.0022730000637238845,
+              0.0017729998944560066,
+              0.0018229993656859733,
+              0.0015830000847927295,
+              0.0016520007193321362
+            ],
+            "text_chars": 135
+          },
+          "ipython_format_wrapper": {
+            "median_ms": 0.09498399958829395,
+            "samples_ms": [
+              0.09498399958829395,
+              0.09006599975691643,
+              0.08457700005237712,
+              0.20365799991850508,
+              0.10279599973728182
+            ],
+            "text_chars": null
+          },
+          "display_wrapper_captured": {
+            "median_ms": 0.11951099986617919,
+            "samples_ms": [
+              0.14840499989077216,
+              0.1247789996341453,
+              0.11951099986617919,
+              0.11829799950646702,
+              0.1143730005424004
+            ],
+            "text_chars": null
+          },
+          "ipython_format_dictionary": {
+            "median_ms": 6.970398000703426,
+            "samples_ms": [
+              6.970398000703426,
+              7.447439999850758,
+              6.908084000315284,
+              6.614531000195711,
+              7.346157000029052
+            ],
+            "text_chars": null
+          },
+          "repr_dictionary": {
+            "median_ms": 5.78295299965248,
+            "samples_ms": [
+              6.253044000004593,
+              6.582451999747718,
+              5.5288090006797574,
+              5.358470999453857,
+              5.78295299965248
+            ],
+            "text_chars": 4692
+          },
+          "repr_first_tensor": {
+            "median_ms": 1.594180000211054,
+            "samples_ms": [
+              1.535361000605917,
+              1.594180000211054,
+              1.6176859999177395,
+              1.7716980000841431,
+              1.3473970002451097
+            ],
+            "text_chars": 1144
+          },
+          "repr_tensor_and_cache_tuple": {
+            "median_ms": 1.6664490003677201,
+            "samples_ms": [
+              1.4976640004533692,
+              1.4159909997033537,
+              1.7685339998934069,
+              1.6664490003677201,
+              1.6919380004765117
+            ],
+            "text_chars": 1282
+          }
+        },
+        "scope": "Formatting and captured publication only; no browser rendering. Logical bytes may double-count aliases. Cache construction is excluded."
+      }
+    },
+    {
+      "case": "tensor_4096",
+      "elements_per_tensor": 4096,
+      "profile": "default",
+      "construction_ms_single_sample": 0.09276999935536878,
+      "report": {
+        "python": "3.12.14",
+        "torch": "2.10.0+cpu",
+        "ipython": "9.10.0",
+        "transformer_lens": "0.0.0",
+        "probe_repository_commit": "8a410e9c35666bdb0ecec3dfb466442408a3a879",
+        "cache_class": "transformer_lens.ActivationCache.ActivationCache",
+        "cache_class_file": "/workspace/scratch/82226a932c76/mechlens/transformer_lens/ActivationCache.py",
+        "repr_source": "    def __repr__(self) -> str:\n        \"\"\"Representation of the ActivationCache.\n\n        Special method that returns a string representation of an object. It's normally used to give\n        a string that can be used to recreate the object, but here we just return a string that\n        describes the object.\n        \"\"\"\n        return f\"ActivationCache with keys {list(self.cache_dict.keys())}\"\n",
+        "keys": 4,
+        "tensor_entries": 4,
+        "logical_tensor_bytes": 65536,
+        "devices": [
+          "cpu"
+        ],
+        "print_options": {
+          "precision": 4,
+          "threshold": 1000,
+          "edgeitems": 3,
+          "linewidth": 80,
+          "sci_mode": null
+        },
+        "initial_cuda_sync_ms": 0.0014320003174361773,
+        "repeats": 5,
+        "measurements": {
+          "repr_wrapper": {
+            "median_ms": 0.0009209998097503558,
+            "samples_ms": [
+              0.0029749999157502316,
+              0.0011710008038789965,
+              0.0009209998097503558,
+              0.0007720000212430023,
+              0.0007609996828250587
+            ],
+            "text_chars": 134
+          },
+          "str_wrapper": {
+            "median_ms": 0.0008420001904596575,
+            "samples_ms": [
+              0.0008910001270123757,
+              0.0008420001904596575,
+              0.0008810002327663824,
+              0.0008320002962136641,
+              0.0007910002750577405
+            ],
+            "text_chars": 134
+          },
+          "print_wrapper_to_memory": {
+            "median_ms": 0.0016530002540093847,
+            "samples_ms": [
+              0.0025440003810217604,
+              0.0026640000214683823,
+              0.0016530002540093847,
+              0.001571999746374786,
+              0.0015129999155760743
+            ],
+            "text_chars": 135
+          },
+          "ipython_format_wrapper": {
+            "median_ms": 0.09000599948194576,
+            "samples_ms": [
+              0.13583500003733207,
+              0.09131800015893532,
+              0.09000599948194576,
+              0.08638100007374305,
+              0.08249500024248846
+            ],
+            "text_chars": null
+          },
+          "display_wrapper_captured": {
+            "median_ms": 0.13282999952934915,
+            "samples_ms": [
+              0.21475500034284778,
+              0.19510499987518415,
+              0.13282999952934915,
+              0.11921000077563804,
+              0.114532999759831
+            ],
+            "text_chars": null
+          },
+          "ipython_format_dictionary": {
+            "median_ms": 0.780319999648782,
+            "samples_ms": [
+              1.0043989996120217,
+              0.780319999648782,
+              0.7460380002157763,
+              0.7213099997898098,
+              0.8565649995944113
+            ],
+            "text_chars": null
+          },
+          "repr_dictionary": {
+            "median_ms": 0.43577900032687467,
+            "samples_ms": [
+              0.483161000374821,
+              0.43577900032687467,
+              0.4704120001406409,
+              0.43425700005172985,
+              0.4204950000712415
+            ],
+            "text_chars": 268
+          },
+          "repr_first_tensor": {
+            "median_ms": 0.11305099997116486,
+            "samples_ms": [
+              0.11305099997116486,
+              0.10590000056254212,
+              0.10602000020298874,
+              0.36156599981040927,
+              0.1418450001438032
+            ],
+            "text_chars": 38
+          },
+          "repr_tensor_and_cache_tuple": {
+            "median_ms": 0.18995800019183662,
+            "samples_ms": [
+              0.24060400028247386,
+              0.13668700012203772,
+              0.1193309999507619,
+              0.24169599964807276,
+              0.18995800019183662
+            ],
+            "text_chars": 176
+          }
+        },
+        "scope": "Formatting and captured publication only; no browser rendering. Logical bytes may double-count aliases. Cache construction is excluded."
+      }
+    },
+    {
+      "case": "tensor_1048576",
+      "elements_per_tensor": 1048576,
+      "profile": "default",
+      "construction_ms_single_sample": 3.8573019992327318,
+      "report": {
+        "python": "3.12.14",
+        "torch": "2.10.0+cpu",
+        "ipython": "9.10.0",
+        "transformer_lens": "0.0.0",
+        "probe_repository_commit": "8a410e9c35666bdb0ecec3dfb466442408a3a879",
+        "cache_class": "transformer_lens.ActivationCache.ActivationCache",
+        "cache_class_file": "/workspace/scratch/82226a932c76/mechlens/transformer_lens/ActivationCache.py",
+        "repr_source": "    def __repr__(self) -> str:\n        \"\"\"Representation of the ActivationCache.\n\n        Special method that returns a string representation of an object. It's normally used to give\n        a string that can be used to recreate the object, but here we just return a string that\n        describes the object.\n        \"\"\"\n        return f\"ActivationCache with keys {list(self.cache_dict.keys())}\"\n",
+        "keys": 4,
+        "tensor_entries": 4,
+        "logical_tensor_bytes": 16777216,
+        "devices": [
+          "cpu"
+        ],
+        "print_options": {
+          "precision": 4,
+          "threshold": 1000,
+          "edgeitems": 3,
+          "linewidth": 80,
+          "sci_mode": null
+        },
+        "initial_cuda_sync_ms": 0.0012520004020188935,
+        "repeats": 5,
+        "measurements": {
+          "repr_wrapper": {
+            "median_ms": 0.0011009997251676396,
+            "samples_ms": [
+              0.0018030004866886884,
+              0.0014820006981608458,
+              0.0011009997251676396,
+              0.0010610001481836662,
+              0.0010510002539376728
+            ],
+            "text_chars": 134
+          },
+          "str_wrapper": {
+            "median_ms": 0.0007909993655630387,
+            "samples_ms": [
+              0.0011710008038789965,
+              0.0010310004654456861,
+              0.0007909993655630387,
+              0.000711000211595092,
+              0.0007519993232563138
+            ],
+            "text_chars": 134
+          },
+          "print_wrapper_to_memory": {
+            "median_ms": 0.0017620004655327648,
+            "samples_ms": [
+              0.0025140006982837804,
+              0.002132999725290574,
+              0.0016430003597633913,
+              0.001633000465517398,
+              0.0017620004655327648
+            ],
+            "text_chars": 135
+          },
+          "ipython_format_wrapper": {
+            "median_ms": 0.0888640006451169,
+            "samples_ms": [
+              0.09772799967322499,
+              0.08955599969340255,
+              0.0888640006451169,
+              0.08625000009487849,
+              0.08606000028521521
+            ],
+            "text_chars": null
+          },
+          "display_wrapper_captured": {
+            "median_ms": 0.13179899997339817,
+            "samples_ms": [
+              0.16823399982968112,
+              0.13179899997339817,
+              0.12295499982428737,
+              0.12145299933763454,
+              0.17668700002104742
+            ],
+            "text_chars": null
+          },
+          "ipython_format_dictionary": {
+            "median_ms": 0.7593279997308855,
+            "samples_ms": [
+              0.7593279997308855,
+              0.7294130000445875,
+              0.6925669995325734,
+              0.7741409999653115,
+              0.7685420005145716
+            ],
+            "text_chars": null
+          },
+          "repr_dictionary": {
+            "median_ms": 0.44598399927053833,
+            "samples_ms": [
+              0.4376209999463754,
+              0.46759700035181595,
+              0.44598399927053833,
+              0.42310900062147994,
+              0.47148300018307054
+            ],
+            "text_chars": 268
+          },
+          "repr_first_tensor": {
+            "median_ms": 0.13786899944534525,
+            "samples_ms": [
+              0.1754060003804625,
+              0.13786899944534525,
+              0.11175899999216199,
+              0.18861500029743183,
+              0.11791800079663517
+            ],
+            "text_chars": 38
+          },
+          "repr_tensor_and_cache_tuple": {
+            "median_ms": 0.11014699975930853,
+            "samples_ms": [
+              0.11291999999230029,
+              0.11083800018241163,
+              0.1096460000553634,
+              0.10937599927274277,
+              0.11014699975930853
+            ],
+            "text_chars": 176
+          }
+        },
+        "scope": "Formatting and captured publication only; no browser rendering. Logical bytes may double-count aliases. Cache construction is excluded."
+      }
+    },
+    {
+      "case": "tensor_4096_full",
+      "elements_per_tensor": 4096,
+      "profile": "full",
+      "construction_ms_single_sample": 0.15946100029395893,
+      "report": {
+        "python": "3.12.14",
+        "torch": "2.10.0+cpu",
+        "ipython": "9.10.0",
+        "transformer_lens": "0.0.0",
+        "probe_repository_commit": "8a410e9c35666bdb0ecec3dfb466442408a3a879",
+        "cache_class": "transformer_lens.ActivationCache.ActivationCache",
+        "cache_class_file": "/workspace/scratch/82226a932c76/mechlens/transformer_lens/ActivationCache.py",
+        "repr_source": "    def __repr__(self) -> str:\n        \"\"\"Representation of the ActivationCache.\n\n        Special method that returns a string representation of an object. It's normally used to give\n        a string that can be used to recreate the object, but here we just return a string that\n        describes the object.\n        \"\"\"\n        return f\"ActivationCache with keys {list(self.cache_dict.keys())}\"\n",
+        "keys": 4,
+        "tensor_entries": 4,
+        "logical_tensor_bytes": 65536,
+        "devices": [
+          "cpu"
+        ],
+        "print_options": {
+          "precision": 4,
+          "threshold": "inf",
+          "edgeitems": 3,
+          "linewidth": 80,
+          "sci_mode": null
+        },
+        "initial_cuda_sync_ms": 0.0012520004020188935,
+        "repeats": 5,
+        "measurements": {
+          "repr_wrapper": {
+            "median_ms": 0.000770999577071052,
+            "samples_ms": [
+              0.0013120006769895554,
+              0.0013319995559868403,
+              0.000770999577071052,
+              0.000711000211595092,
+              0.0007209991963463835
+            ],
+            "text_chars": 134
+          },
+          "str_wrapper": {
+            "median_ms": 0.0007310000000870787,
+            "samples_ms": [
+              0.0008110000635497272,
+              0.0007509997885790654,
+              0.0007310000000870787,
+              0.0007310000000870787,
+              0.0007210001058410853
+            ],
+            "text_chars": 134
+          },
+          "print_wrapper_to_memory": {
+            "median_ms": 0.0017430002117180265,
+            "samples_ms": [
+              0.002314000084879808,
+              0.0019930002963519655,
+              0.0017430002117180265,
+              0.0016020003386074677,
+              0.0014620000001741573
+            ],
+            "text_chars": 135
+          },
+          "ipython_format_wrapper": {
+            "median_ms": 0.09112800034927204,
+            "samples_ms": [
+              0.09430299996893154,
+              0.09167899952444714,
+              0.09112800034927204,
+              0.08757300020079128,
+              0.08535899996786611
+            ],
+            "text_chars": null
+          },
+          "display_wrapper_captured": {
+            "median_ms": 0.125609999486187,
+            "samples_ms": [
+              0.1435979993402725,
+              0.125609999486187,
+              0.1208120002047508,
+              0.12073200014128815,
+              0.18670300050871447
+            ],
+            "text_chars": null
+          },
+          "ipython_format_dictionary": {
+            "median_ms": 81.55649600030301,
+            "samples_ms": [
+              81.12044599965884,
+              80.66395599962561,
+              81.97728299910523,
+              81.55649600030301,
+              83.05524899969896
+            ],
+            "text_chars": null
+          },
+          "repr_dictionary": {
+            "median_ms": 80.77036399936333,
+            "samples_ms": [
+              81.26193800035253,
+              80.77036399936333,
+              79.46626600005402,
+              84.83097399948747,
+              80.67257499988045
+            ],
+            "text_chars": 72948
+          },
+          "repr_first_tensor": {
+            "median_ms": 20.13392099979683,
+            "samples_ms": [
+              19.9400430001333,
+              21.885278999434377,
+              21.07483600047999,
+              20.13392099979683,
+              19.477716999972472
+            ],
+            "text_chars": 18208
+          },
+          "repr_tensor_and_cache_tuple": {
+            "median_ms": 20.73642400046083,
+            "samples_ms": [
+              20.739198999763175,
+              21.05264400051965,
+              19.70108900059131,
+              19.908245000806346,
+              20.73642400046083
+            ],
+            "text_chars": 18346
+          }
+        },
+        "scope": "Formatting and captured publication only; no browser rendering. Logical bytes may double-count aliases. Cache construction is excluded."
+      }
+    }
+  ],
+  "publication": [],
+  "browser_rendering": "Blocked: cloud browser returned ERR_CONNECTION_REFUSED for the local JupyterLab server.",
+  "execution_mode": "In-process IPython; notebook kernel could not start (ZeroMQ ip_resolver Operation not permitted). No real IOPub publication or browser timing was measured.",
+  "publication_status": "Pending: requires a functioning Jupyter kernel and reachable frontend.",
+  "captured_display_method": "Fresh in-process IPython session in the same locked environment; four independently allocated float32 tensors of 4096 ones; one warm-up and five samples; no real IOPub transport.",
+  "captured_display_matrix": [
+    {
+      "profile": "default",
+      "object": "wrapper",
+      "samples_ms": [
+        0.26443900060257874,
+        0.1448679995519342,
+        0.21399300021585077,
+        0.14567900052497862,
+        0.12524799967650324
+      ],
+      "median_ms": 0.14567900052497862,
+      "text_chars": 134
+    },
+    {
+      "profile": "default",
+      "object": "dictionary",
+      "samples_ms": [
+        0.9639019999667653,
+        0.8366900001419708,
+        0.9516039999653003,
+        0.8213670007535256,
+        0.8507219999955851
+      ],
+      "median_ms": 0.8507219999955851,
+      "text_chars": 271
+    },
+    {
+      "profile": "default",
+      "object": "tensor",
+      "samples_ms": [
+        0.32130400086316513,
+        0.35763900086749345,
+        0.3208329999324633,
+        0.3073429998039501,
+        0.34210500052722637
+      ],
+      "median_ms": 0.32130400086316513,
+      "text_chars": 38
+    },
+    {
+      "profile": "full",
+      "object": "wrapper",
+      "samples_ms": [
+        0.24604000009276206,
+        0.13909000062994892,
+        0.12186299954919377,
+        0.15849899955355795,
+        0.12582999988808297
+      ],
+      "median_ms": 0.13909000062994892,
+      "text_chars": 134
+    },
+    {
+      "profile": "full",
+      "object": "dictionary",
+      "samples_ms": [
+        85.9523100007209,
+        85.07626000027813,
+        85.91598499970132,
+        87.27061500030686,
+        85.16112800043629
+      ],
+      "median_ms": 85.91598499970132,
+      "text_chars": 73859
+    },
+    {
+      "profile": "full",
+      "object": "tensor",
+      "samples_ms": [
+        28.717608000079053,
+        25.44062099968869,
+        23.01070100020297,
+        23.149740000008023,
+        21.85860600002343
+      ],
+      "median_ms": 23.149740000008023,
+      "text_chars": 18208
+    }
+  ]
+}

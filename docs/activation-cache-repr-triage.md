@@ -1,7 +1,9 @@
 # ActivationCache representation: issue #1126 triage
 
-**Status:** Investigation open · No library behavior change proposed yet  
-**Branch:** `investigate/activation-cache-repr-1126`  
+**Status:** Formatting matrix measured · Live notebook rendering blocked · No behavior change proposed
+
+**Branch:** `investigate/activation-cache-repr-1126`
+
 **Source baseline:** `33387b7def1ead3a8cba532a729da5599e875873`
 
 ## Summary
@@ -51,10 +53,10 @@ still produce substantial notebook output.
 - [Regression tests](../tests/unit/test_activation_cache_repr.py) verify that
   single and multiple cache names appear and that cached tensors' `__repr__`
   methods are not invoked. All three cases passed with the locked dependencies.
-- [Earlier diagnostic notes](../debugging/activation_cache_repr_1126.md) contain
-  isolated CPU measurements. They are exploratory evidence, not measurements of
-  the reported notebook stall. Their validation notes describe an earlier
-  environment; the later suite results are summarized below.
+- The bounded experiment below uses the real package imported from this checkout
+  and locked dependency versions. The notebook is ready to run, but a live kernel
+  and browser connection were blocked here. Earlier exploratory findings are
+  consolidated in the historical section below.
 - The initial broad unit run reported 3,008 passes and 18 failures. All 18
   failures passed on targeted reruns after aligning dependencies with the
   lockfile and installing the multimodal packages. This was not one clean full
@@ -68,43 +70,135 @@ still produce substantial notebook output.
 
 ## Measurements
 
-**All result slots below are intentionally pending.** Fill them from a new,
-identified reproduction; do not substitute the earlier exploratory timings.
+### Scope and execution status
+
+These are **synthetic CPU formatting measurements**, not a reproduction of the
+reported hang. The planned notebook kernel died before execution with
+`Operation not permitted (src/ip_resolver.cpp:542)` and
+`Kernel died before replying to kernel_info`. JupyterLab's server started, but
+the cloud browser returned `ERR_CONNECTION_REFUSED` for its localhost URL.
+The server was stopped after the attempt.
+
+The formatting cells were therefore run in **in-process IPython**, including
+captured `display()` for the wrapper, dictionary, and a tensor. No live IOPub
+publication, browser rendering, or visible responsiveness was measured. The
+notebook has no fabricated execution counts or outputs.
+
+- [Runnable notebook](../debugging/activation_cache_repr_experiment.ipynb)
+- [Raw results and all samples](../debugging/activation_cache_repr_measurements.json)
+- [Diagnostic probe](../debugging/activation_cache_repr_probe.py)
 
 ### Reproduction identity
 
-| Field | Value |
+| Field | Recorded value |
 | --- | --- |
-| Confirmed issue URL and exact failing cell | **Pending** |
-| Checkout commit and imported class file | **Pending** |
-| Python, TransformerLens, PyTorch, and IPython versions | **Pending** |
-| Notebook frontend, version, and display extensions | **Pending** |
-| Device, available memory, and tensor dtype/shapes | **Pending** |
-| Key count and total key-text length | **Pending** |
-| Logical tensor bytes and shared-storage/alias details | **Pending** |
-| Tensor print options, including threshold and edge items | **Pending** |
-| Warm-up, repetitions, and synchronization method | **Pending** |
+| Source commit | `8a410e9c35666bdb0ecec3dfb466442408a3a879` |
+| ActivationCache source blob | `7d392b6da53f44bc975d13606769a20682088dc9` |
+| Import | Real `transformer_lens.ActivationCache.ActivationCache` from this checkout; exact file path in JSON |
+| Versions | Python 3.12.14; TransformerLens 0.0.0; PyTorch 2.10.0+cpu; IPython 9.10.0 |
+| UI attempt | JupyterLab 3.6.8 server; browser could not connect; kernel startup blocked |
+| Data | CPU float32, independently allocated all-ones vectors; no shared-storage aliases |
+| Allocation bounds | At most 16 MiB tensor storage; 10,000 keys; full profile limited to four 4,096-element tensors |
+| Print options | Precision 4, edge items 3, line width 80; threshold 1,000 (default) or infinity (full) |
+| Timing | One warm-up, five samples, median and observed min–max; one PyTorch thread |
+| Construction | Separately timed once per case, without warm-up; excluded from formatting measurements |
+| CUDA/MPS synchronization | N/A: CPU-only experiment |
+| Issue URL and original failing cell | **Pending**; issue identity investigation deferred |
 
-### Results to collect
+The exact UTC timestamp and unrounded samples are in the JSON. The small sample
+count and shared host make these illustrative measurements, not performance
+thresholds or confidence intervals.
 
-| Measurement | Median / spread | Output size | Observation / evidence |
-| --- | --- | --- | --- |
-| Model execution and cache construction, output suppressed | **Pending** | N/A | **Unfilled** |
-| Initial outstanding CUDA work, if applicable | **Pending** | N/A | **Unfilled** |
-| `repr(cache)` | **Pending** | **Pending** | **Unfilled** |
-| `print(cache)` captured to memory | **Pending** | **Pending** | **Unfilled** |
-| IPython formatting of the wrapper | **Pending** | **Pending** | **Unfilled** |
-| Captured `display(cache)` publication | **Pending** | **Pending** | **Unfilled** |
-| Actual notebook publication and frontend rendering | **Pending** | **Pending** | **Unfilled** |
-| Underlying dictionary representation | **Pending** | **Pending** | **Unfilled** |
-| One tensor and the output/cache tuple, separately | **Pending** | **Pending** | **Unfilled** |
-| Fixed keys, increasing tensor storage | **Pending** | **Pending** | **Unfilled** |
-| Fixed tensor values, increasing key count | **Pending** | **Pending** | **Unfilled** |
-| Default versus full tensor-print profile, bounded inputs | **Pending** | **Pending** | **Unfilled** |
+### Key count, fixed one-element tensors
 
-Record failures or hangs with a traceback or stack sample and elapsed time; do
-not record them as zero-duration results. Mark a row **N/A** only after confirming
-why it does not apply, such as running on CPU rather than CUDA.
+Only keys change; tensor values have constant shape. Timings are milliseconds.
+
+| Keys | Wrapper repr characters | `repr(cache)` median | IPython formatting median | Captured wrapper display median |
+| ---: | ---: | ---: | ---: | ---: |
+| 1 | 53 | 0.0009 | 0.0916 | 0.2900 |
+| 100 | 2,816 | 0.0085 | 0.1024 | 0.1467 |
+| 10,000 | 298,916 | 0.7919 | 1.0531 | 1.4960 |
+
+### Tensor size and print profile, fixed four keys
+
+Wrapper representations are 134 characters in every row. Timings are milliseconds.
+
+| Elements per tensor | Total tensor bytes | Profile | Wrapper repr median | Dictionary repr median | Dictionary repr characters |
+| ---: | ---: | --- | ---: | ---: | ---: |
+| 256 | 4,096 | default | 0.0008 | 5.7830 | 4,692 |
+| 4,096 | 65,536 | default | 0.0009 | 0.4358 | 268 |
+| 1,048,576 | 16,777,216 | default | 0.0011 | 0.4460 | 268 |
+| 4,096 | 65,536 | full | 0.0008 | 80.7704 | 72,948 |
+
+Larger tensors can format faster under the default profile because they are
+summarized. Changing tensor storage alone did not increase wrapper output size.
+Full printing affected dictionary/tensor formatting, not the wrapper's repr.
+
+### Captured display comparisons
+
+Four keys, 4,096 elements per tensor; a separate in-process IPython session in
+the same locked environment. These include capture-context overhead, and exclude
+real notebook transport and rendering. Output size is captured `text/plain`.
+
+| Profile | Displayed object | Median (ms) | Min–max (ms) | Characters |
+| --- | --- | ---: | ---: | ---: |
+| default | wrapper | 0.1457 | 0.1252–0.2644 | 134 |
+| default | dictionary | 0.8507 | 0.8214–0.9639 | 271 |
+| default | tensor | 0.3213 | 0.3073–0.3576 | 38 |
+| full | wrapper | 0.1391 | 0.1219–0.2460 | 134 |
+| full | dictionary | 85.9160 | 85.0763–87.2706 | 73,859 |
+| full | tensor | 23.1497 | 21.8586–28.7176 | 18,208 |
+
+### Detailed baseline and remaining result slots
+
+The measured baseline is four keys × 4,096 float32 elements under default printing.
+
+| Measurement | Median (ms) | Min–max (ms) | Output characters / status |
+| --- | ---: | ---: | --- |
+| `repr(cache)` | 0.0009 | 0.0008–0.0030 | 134 |
+| `print(cache)` to memory | 0.0017 | 0.0015–0.0027 | 135 |
+| IPython wrapper formatting | 0.0900 | 0.0825–0.1358 | Not recorded by probe |
+| Dictionary repr | 0.4358 | 0.4205–0.4832 | 268 |
+| One tensor repr | 0.1131 | 0.1059–0.3616 | 38 |
+| Tensor/cache tuple repr | 0.1900 | 0.1193–0.2417 | 176 |
+| Model inference | N/A | N/A | Synthetic tensors; no model loaded |
+| Initial CUDA work | N/A | N/A | CPU-only |
+| Live notebook publication | **Pending** | **Pending** | Kernel startup blocked |
+| Browser rendering / responsiveness | **Pending** | **Pending** | Frontend connection blocked |
+| Original failing notebook | **Pending** | **Pending** | Not reproduced |
+
+Construction timings are single samples in the raw results, not medians. Do not
+replace blocked or pending results with zero or with captured-display timings.
+
+### Run the notebook in a normal Jupyter environment
+
+Use the repository's locked dependencies and register/select its kernel:
+
+```bash
+uv sync --frozen
+uv run python -m ipykernel install --user --name repr-locked --display-name "Python (locked repr experiment)"
+uv run jupyter lab debugging/activation_cache_repr_experiment.ipynb
+```
+
+Run all cells. The final cells publish bounded real outputs and heartbeat
+messages. Observe whether scrolling and interaction remain responsive, recording
+the frontend/browser versions. `display()` return time is only a kernel-side
+measurement; a heartbeat alone does not measure browser paint completion.
+The notebook restores print settings after each profile comparison.
+
+## Historical exploratory evidence
+
+Earlier experiments loaded the class AST in isolation on PyTorch 2.15.0+cpu and
+IPython 9.16.1. With 100 fixed keys, wrapper repr medians stayed at 0.007–0.008 ms
+between 100 KiB and 62.5 MiB of tensors; dictionary repr was 134.849 ms and
+10.605 ms respectively because the larger tensors were summarized. Full printing
+of four 4,096-element tensors increased dictionary repr from 0.391 to 80.425 ms.
+These figures are historical and are not pooled with the current measurements.
+
+Raising-value/model controls confirmed that wrapper print/str/repr, normal IPython
+formatting, and captured display did not represent those objects. A separate
+100,000-key experiment produced about 3.09 million characters, demonstrating why
+key count is still relevant to frontend output volume. None reproduced a hang.
 
 ## Reproduction plan
 
@@ -159,8 +253,9 @@ for the reported hang until the relevant path is reproduced.
 > `(output, cache)` result. Tensor print settings and custom display extensions
 > may also matter.
 >
-> Our next step is to time cache construction, `repr(cache)`, IPython formatting,
-> and actual notebook display separately, then vary key count independently of
-> tensor size. We would like to establish which path is slow before changing
-> the representation's behavior. A bounded key summary may be useful, but we
+> Bounded CPU measurements show that wrapper formatting tracks key count, while
+> full tensor printing makes dictionary/tensor formatting more expensive. Live
+> notebook publication and browser rendering remain unmeasured; our next step
+> is to test those in the affected frontend. We would like to establish which
+> path is slow before changing the representation's behavior. A bounded key summary may be useful, but we
 > have not established that it would fix this report.
