@@ -52,7 +52,14 @@ still produce substantial notebook output.
 
 - [Regression tests](../tests/unit/test_activation_cache_repr.py) verify that
   single and multiple cache names appear and that cached tensors' `__repr__`
-  methods are not invoked. All three cases passed with the locked dependencies.
+  methods are not invoked through `repr`, `str`, `print`, and IPython's normal
+  display formatter. All 12 cases passed with the locked dependencies.
+  Attempted value representations are counted because IPython can catch formatter
+  exceptions internally. These tests cover formatting, not live notebook transport
+  or browser rendering.
+  A temporary mutation to represent `cache_dict` was rejected by all four paths.
+  `make format` and `mypy .` completed successfully (301 source files checked).
+  The broader suite was not repeated for this coverage-only extension.
 - The bounded experiment below uses the real package imported from this checkout
   and locked dependency versions. The notebook is ready to run, but a live kernel
   and browser connection were blocked here. Earlier exploratory findings are
